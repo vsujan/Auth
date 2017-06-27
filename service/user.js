@@ -1,143 +1,43 @@
-import boom from 'boom';
-import httpCode from 'http-status-codes';
-import User from '../model/User';
-import logger from '../utils/logger';
-import * as crypt from '../utils/crypt';
-import * as roleService from '../service/role';
-import * as tokenService from '../service/token';
-import * as sessionService from '../service/session';
-import * as auth from '../constant/auth.json';
+import * as user from '../service/user';
 
 /**
- * Returns user details and token details on successful login.
+ * Returns login details.
  *
- * @param loginParams
- * @returns {Promise}
+ * @param req
+ * @param res
+ * @param next
  */
-export async function login(loginParams) {
-  try {
-    let userDetails = await validateLogin(loginParams);
-    let { id, firstName, lastName, email, contactNumber, roleId } = userDetails.toJSON();
+export function login(req, res, next) {
+  let { email, password } = req.body;
 
-    let roleDetails = await roleService.fetch(roleId);
-    let { title, name } = roleDetails.toJSON();
-    let tokens = await tokenService.fetchTokens(userDetails.toJSON());
-
-    await sessionService.createSession({
-      userId: id,
-      refreshToken: tokens.refreshToken
-    });
-
-    let userInfo = {
-      user: {
-        firstName,
-        lastName,
-        email,
-        contactNumber
-      },
-      role: {
-        title,
-        name
-      },
-      tokens
-    };
-
-    return userInfo;
-  } catch (err) {
-    throw (err);
-  }
+  user.login({ email, password })
+    .then(data => res.json(data))
+    .catch(e => next(e));
 }
 
 /**
- * Checks if login is correct.
- *
- * @param loginParams
- * @returns {Promise.<*>}
+ * Logout from the application
+ * @param req
+ * @param res
+ * @param next
  */
-async function validateLogin(loginParams) {
-  let { email, password } = loginParams;
+export function logout(req, res, next) {
+  let refreshToken = req.body.refreshToken;
 
-  try {
-
-    let userDetail = await fetchByEmail(email);
-
-    let result = await crypt.compare(password, userDetail.toJSON().password);
-
-    if (!result) {
-      throw boom.create(httpCode.FORBIDDEN, auth.incorrectPassword);
-    }
-
-    return userDetail;
-  } catch (e) {
-    logger.debug('Error occured: ', e);
-    throw (e);
-  }
+  user.logout(refreshToken)
+    .then(data => res.json(data))
+    .catch(e => next(e));
 }
 
 /**
- * Return a single user with given email.
+ * Reset user password.
  *
- * @param email
- * @returns {Promise.<*>}
+ * @param req
+ * @param res
+ * @param next
  */
-async function fetchByEmail(email) {
-
-  try {
-    logger.info('Searching user with email: ', email);
-    let result = await User.fetchByEmail(email);
-
-    if (!result) {
-      logger.debug('No user found with email: ', email);
-      throw boom.create(httpCode.FORBIDDEN, auth.incorrectEmail);
-    }
-
-    return result;
-  } catch (err) {
-    logger.error('Database error with message: ', err.message);
-
-    throw err;
-  }
-}
-
-/**
- * Return a single user with given id.
- *
- * @param id
- * @returns {Promise.<*>}
- */
-export async function fetchById(id) {
-  try {
-    logger.info('Searching user with id: ', id);
-    let result = await User.fetchById(id);
-
-    if (!result) {
-      logger.debug('No user found with id: ', id);
-      throw boom.notFound(`Incorrect id`);
-    }
-
-    return result;
-  } catch (err) {
-    logger.error('Database error with message: ', err.message);
-
-    throw err;
-  }
-}
-
-/**
- * Logout a user with given token.
- *
- * @param token
- * @returns {Promise.<void>}
- */
-export async function logout(token) {
-  try {
-    await tokenService.verifyRefreshToken(token);
-    let sessionDetails = await sessionService.fetchByToken(token);
-
-    await sessionService.destroy(sessionDetails.toJSON().id);
-
-    return auth.logoutSuccess;
-  } catch (error) {
-    throw error;
-  }
+export function resetPassword(req, res, next) {
+  user.resetPassword(req.body)
+    .then(() => res.send('Password successfully changed'))
+    .catch(e => next(e));
 }
