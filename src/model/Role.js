@@ -1,5 +1,5 @@
 import camelize from 'bookshelf-camelcase';
-import bookshelf from '../../utils/bookshelf';
+import bookshelf from '../utils/bookshelf';
 
 bookshelf.plugin(camelize);
 

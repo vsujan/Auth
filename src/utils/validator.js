@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import logger from '../utils/logger';
+import logger from './logger';
 
 /**
  * Validates a given data against predefined schema.

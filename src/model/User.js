@@ -1,7 +1,7 @@
-import bookshelf from '../../utils/bookshelf';
+import bookshelf from '../utils/bookshelf';
 
-export const USER_ADMIN  = 1;
-export const USER_SERVICE_PROVIDER  = 2;
+export const USER_ADMIN = 1;
+export const USER_SERVICE_PROVIDER = 2;
 
 class User extends bookshelf.Model {
   get tableName() {
@@ -14,6 +14,10 @@ class User extends bookshelf.Model {
 
   static fetchById(id) {
     return User.where('id', id).fetch();
+  }
+
+  static updateById(id, params) {
+    return User.where('id', id).save(params, { method: 'update' });
   }
 }
 

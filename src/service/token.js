@@ -2,7 +2,7 @@ import boom from 'boom';
 import httpError from 'http-status-codes';
 import * as jwt from '../utils/jwt';
 import * as auth from '../constant/auth.json';
-import * as sessionService from '../service/session';
+import * as sessionService from './session';
 
 /**
  * Generate access and refresh tokens.

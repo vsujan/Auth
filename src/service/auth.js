@@ -1,6 +1,6 @@
-import * as userService from '../service/user';
-import * as tokenService from '../service/token';
-import * as sessionService from '../service/session';
+import * as userService from './user';
+import * as tokenService from './token';
+import * as sessionService from './session';
 
 /**
  * Return new access token based on the refresh token.

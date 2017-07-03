@@ -1,6 +1,6 @@
 import boom from 'boom';
-import * as auth from '../../../utils/auth';
-import * as authMsg from '../../../i18n/en_us/auth.json';
+import * as auth from '../../utils/auth';
+import * as authMsg from '../../constant/auth.json';
 
 export async function validateToken(req, res, next) {
   try {

@@ -1,7 +1,7 @@
 import boom from 'boom';
 import HttpStatus from 'http-status-codes';
 import * as jwt from './jwt';
-import auth from '../i18n/en_us/auth.json';
+import auth from '../constant/auth.json';
 
 export function validate(token) {
   try {

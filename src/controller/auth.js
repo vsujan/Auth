@@ -12,3 +12,13 @@ export function getNewAccessToken(req, res, next) {
     .then(accessToken => res.json({ accessToken }))
     .catch(err => next(err));
 }
+
+/**
+ * Validate access token.
+ *
+ * @param req
+ * @param res
+ */
+export function validateToken(req, res) {
+  res.send('Valid token');
+}
