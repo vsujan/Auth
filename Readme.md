@@ -1,0 +1,1 @@
+Supports basic auth functions
