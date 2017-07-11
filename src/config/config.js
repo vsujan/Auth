@@ -3,6 +3,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export default {
+    logging: {
+        level: process.env.LOGGING_LEVEL || 'info',
+        path: process.env.LOGGING_DIR || 'logs'
+    },
     auth: {
         saltRounds: process.env.SALT_ROUNDS || 11,
         accessTokenExpiry: process.env.ACCESS_TOKEN_DURATION || 300000,
@@ -11,13 +15,13 @@ export default {
         refreshTokenSalt: process.env.REFRESH_TOKEN_SALT || 'authenTICaTION'
     },
     database: {
-    client: 'pg',
-    connection: {
-      host: process.env.DB_HOST || '127.0.0.1',
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      charset: 'utf8'
-    }
-  },
+        client: 'pg',
+        connection: {
+            host: process.env.DB_HOST || '127.0.0.1',
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_NAME,
+            charset: 'utf8'
+        }
+    },
 }
