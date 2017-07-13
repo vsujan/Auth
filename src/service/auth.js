@@ -6,7 +6,7 @@ import * as sessionService from './session';
  * Return new access token based on the refresh token.
  *
  * @param token
- * @returns {Promise.<*>}
+ * @returns {Promise}
  */
 export async function generateNewToken(token) {
   try {

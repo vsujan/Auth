@@ -1,7 +1,6 @@
 import bookshelf from '../utils/bookshelf';
 
 export const USER_ADMIN = 1;
-export const USER_SERVICE_PROVIDER = 2;
 
 class User extends bookshelf.Model {
   get tableName() {

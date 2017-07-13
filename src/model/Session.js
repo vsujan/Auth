@@ -1,7 +1,4 @@
-import camelize from 'bookshelf-camelcase';
 import bookshelf from '../utils/bookshelf';
-
-bookshelf.plugin(camelize);
 
 class Session extends bookshelf.Model {
   get tableName() {

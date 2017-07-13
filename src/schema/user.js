@@ -12,7 +12,15 @@ export const userDetail = {
   password: loginSchema.password
 };
 
+export const forgotPasswordSchema = {
+  email: loginSchema.email
+};
+
 export const resetPasswordSchema = {
+  newPassword: loginSchema.password
+};
+
+export const changePasswordSchema = {
   email: loginSchema.email,
   oldPassword: loginSchema.password,
   newPassword: loginSchema.password

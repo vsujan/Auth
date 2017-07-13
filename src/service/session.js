@@ -1,15 +1,15 @@
 import boom from 'boom';
-import Session from '../model/Session';
 import logger from '../utils/logger';
+import Session from '../model/Session';
 import * as auth from '../constant/auth.json';
 import * as dbError from '../constant/dbErrors';
 import * as commonError from '../constant/commonErrors';
 
 /**
- * Create session for a given user with refresh tokens.
+ * Return a session for a given user with refresh tokens.
  *
  * @param data
- * @returns {Promise.<*>}
+ * @returns {Promise}
  */
 export async function createSession(data) {
   let session = new Session(data);
@@ -39,7 +39,7 @@ export async function createSession(data) {
  * Return a session for a given token.
  *
  * @param token
- * @returns {Promise.<*>}
+ * @returns {Promise}
  */
 export async function fetchByToken(token) {
   try {
@@ -62,7 +62,7 @@ export async function fetchByToken(token) {
  * Delete a session with given id.
  *
  * @param id
- * @returns {Promise.<null>}
+ * @returns {Promise}
  */
 export async function destroy(id) {
   try {

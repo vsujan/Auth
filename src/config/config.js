@@ -12,7 +12,10 @@ export default {
         accessTokenExpiry: process.env.ACCESS_TOKEN_DURATION || 300000,
         refreshTokenExpiry: process.env.REFRESH_TOKEN_DURATION || 86400000,
         accessTokenSalt: process.env.ACCESS_TOKEN_SALT || 'authenTICaTION',
-        refreshTokenSalt: process.env.REFRESH_TOKEN_SALT || 'authenTICaTION'
+        refreshTokenSalt: process.env.REFRESH_TOKEN_SALT || 'authenTICaTION',
+        forgotPasswordExpiry: process.env.FORGOT_PASSWORD_TOKEN_DURATION || 300000,
+        forgotPasswordSalt: process.env.FORGOT_PASSWORD_TOKEN_SALT || 'forgotpassword',
+        resetPasswordKey: 'reset'
     },
     database: {
         client: 'pg',
@@ -24,4 +27,10 @@ export default {
             charset: 'utf8'
         }
     },
+    ses: {
+        accessKey: process.env.ACCESS_KEY,
+        secretKey: process.env.SECRET_KEY,
+        senderAddress: process.env.SENDER_ADDRESS,
+        resetPasswordMail: 'resetPassword'
+    }
 }

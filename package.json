@@ -19,8 +19,12 @@
     "jsonwebtoken": "^7.4.1",
     "knex": "^0.13.0",
     "lodash": "^4.17.4",
+    "moment": "^2.18.1",
+    "nodemailer": "^4.0.1",
+    "nodemailer-ses-transport": "^1.5.1",
     "pg": "^6.2.2",
     "serve-favicon": "^2.4.3",
+    "sprintf-js": "^1.1.1",
     "winston": "^2.3.1"
   },
   "devDependencies": {

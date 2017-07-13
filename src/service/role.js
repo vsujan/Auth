@@ -6,7 +6,7 @@ import logger from '../utils/logger';
  * Return role of a given user.
  *
  * @param id
- * @returns {Promise.<*>}
+ * @returns {Promise}
  */
 export async function fetch(id) {
   try {

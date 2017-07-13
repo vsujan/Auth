@@ -1,4 +1,5 @@
 import * as user from '../service/user';
+import { getBaseUrl } from '../utils/url';
 
 /**
  * Returns login details.
@@ -30,6 +31,34 @@ export function logout(req, res, next) {
 }
 
 /**
+ * Change user password.
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
+export function changePassword(req, res, next) {
+  user.changePassword(req.body)
+    .then(() => res.send('Password successfully changed'))
+    .catch(e => next(e));
+}
+
+/**
+ * Send reset password link.
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
+export function forgotPassword(req, res, next) {
+  let baseUrl = getBaseUrl(req);
+
+  user.forgotPassword(req.body, baseUrl)
+    .then(() => res.send('Successfully sent reset password link'))
+    .catch(e => next(e));
+}
+
+/**
  * Reset user password.
  *
  * @param req
@@ -37,7 +66,10 @@ export function logout(req, res, next) {
  * @param next
  */
 export function resetPassword(req, res, next) {
-  user.resetPassword(req.body)
-    .then(() => res.send('Password successfully changed'))
+  let token = req.params.token;
+  let payload = req.body;
+
+  user.resetPassword(token, payload)
+    .then(() => res.send('Password reset successfully'))
     .catch(e => next(e));
 }

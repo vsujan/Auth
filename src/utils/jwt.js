@@ -34,10 +34,34 @@ export function generateRefreshToken(data) {
   return jwt.sign({ encryptedData: data }, config.auth.refreshTokenSalt, { expiresIn: config.auth.refreshTokenExpiry });
 }
 
+/**
+ * Verify access token.
+ *
+ */
 export function verifyAccessToken(token) {
   return jwt.verify(token, config.auth.accessTokenSalt);
 }
 
+/**
+ * Verify refresh token.
+ *
+ */
 export function verifyRefreshToken(token) {
   return jwt.verify(token, config.auth.refreshTokenSalt);
+}
+
+/**
+ * Return forgot password token.
+ *
+ */
+export function generateForgotPasswordToken(data) {
+  return jwt.sign({ encryptedData: data }, config.auth.forgotPasswordSalt, { expiresIn: config.auth.forgotPasswordExpiry });
+}
+
+/**
+ * Verify forgot password token.
+ *
+ */
+export function verifyForgotPasswordToken(token) {
+  return jwt.verify(token, config.auth.forgotPasswordSalt);
 }
