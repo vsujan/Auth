@@ -6,3 +6,4 @@ Database with tables:
 1) users
 2) roles
 3) sessions
+4) user_tokens
