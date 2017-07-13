@@ -5,7 +5,7 @@ export const loginSchema = {
   password: Joi.string().min(8).max(12)
 };
 
-export const userDetail = {
+export const registerSchema = {
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   email: loginSchema.email,

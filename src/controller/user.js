@@ -2,6 +2,16 @@ import * as user from '../service/user';
 import { getBaseUrl } from '../utils/url';
 
 /**
+ * Register a user to the application.
+ *
+ */
+export function register(req, res, next) {
+  user.register(req.body)
+    .then(data => res.json(data))
+    .catch(e => next(e));
+}
+
+/**
  * Returns login details.
  *
  * @param req

@@ -2,6 +2,22 @@ import * as schema from '../../schema/user';
 import * as validator from '../../utils/validator';
 
 /**
+ * Validate a register request against a schema.
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {Promise}
+ */
+export function validateRegister(req, res, next) {
+  const user = req.body;
+
+  return validator.validate(user, schema.registerSchema)
+    .then(() => next())
+    .catch(err => next(err));
+}
+
+/**
  * Validate a login request against a schema.
  *
  * @param req

@@ -6,6 +6,7 @@ import * as authValidator from './middleware/validator/auth';
 
 const router = express.Router();
 
+router.post('/register', userValidator.validateRegister, user.register);
 router.post('/login', userValidator.validateLogin, user.login);
 router.post('/refresh', authValidator.validateRefreshToken, auth.getNewAccessToken);
 router.delete('/logout', authValidator.validateToken, authValidator.validateRefreshToken, user.logout);

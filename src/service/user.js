@@ -1,6 +1,6 @@
 import boom from 'boom';
 import moment from 'moment';
-import httpCode from 'http-status-codes';
+import HttpStatus from 'http-status-codes';
 import User from '../model/User';
 import logger from '../utils/logger';
 import config from '../config/config';
@@ -8,10 +8,57 @@ import * as email from '../utils/email';
 import * as crypt from '../utils/crypt';
 import * as auth from '../constant/auth.json';
 import * as roleService from '../service/role';
+import * as dbError from '../constant/dbErrors';
 import * as tokenService from '../service/token';
 import { MAIL_DATE_FORMAT } from '../constant/date';
 import * as sessionService from '../service/session';
+import * as commonError from '../constant/commonErrors';
 import * as userTokenService from '../service/userToken';
+
+/**
+ * Register a new user.
+ *
+ * @param payload
+ * @returns {Promise}
+ */
+export async function register(payload) {
+  let password = await crypt.hash(payload.password);
+  let params = {
+    firstName: payload.firstName,
+    lastName: payload.lastName,
+    email: payload.email,
+    password
+  };
+  let user = await create(params);
+
+  return user;
+}
+
+/**
+ * Create new user and insert into database.
+ *
+ * @param data
+ * @returns {Promise}
+ */
+export async function create(data) {
+  let user = new User(data);
+
+  logger.debug('Creating a new user with data', data);
+  try {
+    let createdUser = await user.save();
+
+    logger.debug('User created', createdUser.toJSON());
+
+    return createdUser;
+  } catch (err) {
+    logger.info('Database error with message: ', err.message);
+
+    if (err.code === dbError.UNIQUE_VIOLATION) {
+      throw boom.badRequest(commonError.BAD_REQUEST);
+    }
+    throw boom.create(HttpStatus.INTERNAL_SERVER_ERROR, commonError.SERVER_ERROR);
+  }
+}
 
 /**
  * Returns user details and token details on successful login.
@@ -67,7 +114,7 @@ async function validateUser(loginParams) {
     let result = await crypt.compare(password, userDetail.toJSON().password);
 
     if (!result) {
-      throw boom.create(httpCode.FORBIDDEN, auth.incorrectPassword);
+      throw boom.create(HttpStatus.FORBIDDEN, auth.incorrectPassword);
     }
 
     return userDetail;
@@ -91,7 +138,7 @@ async function fetchByEmail(email) {
 
     if (!result) {
       logger.debug('No user found with email: ', email);
-      throw boom.create(httpCode.FORBIDDEN, auth.incorrectEmail);
+      throw boom.create(HttpStatus.FORBIDDEN, auth.incorrectEmail);
     }
 
     return result;
