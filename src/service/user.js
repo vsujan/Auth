@@ -20,7 +20,7 @@ import * as userTokenService from '../service/userToken';
  * @returns {Promise}
  */
 export async function login(loginParams) {
-  try {
+    try {
     let userDetails = await validateUser(loginParams);
     let { id, firstName, lastName, email, contactNumber, roleId } = userDetails.toJSON();
 

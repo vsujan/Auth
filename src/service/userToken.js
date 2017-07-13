@@ -1,3 +1,4 @@
+import boom from 'boom';
 import * as logger from '../utils/logger';
 import UserToken from '../model/UserToken';
 import * as auth from '../constant/auth.json';
