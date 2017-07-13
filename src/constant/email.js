@@ -1,4 +1,6 @@
-export const resetPasswordSubject = 'North Seattle Network - Forgot Password!';
+import config from '../config/config';
+
+export const resetPasswordSubject = config.ses.mailSubject;
 
 export const resetPasswordBody = `
   Hello <b>%(userName)s</b>,
@@ -7,5 +9,5 @@ export const resetPasswordBody = `
   <br><br>
   <a href=%(link)s>Click this link to reset your password.</a>
   <br><br>
-  <b>The North Seattle Network Team</b>.
+  <b>${config.ses.mailFooter}</b>.
 `;

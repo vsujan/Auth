@@ -31,6 +31,8 @@ export default {
         accessKey: process.env.ACCESS_KEY,
         secretKey: process.env.SECRET_KEY,
         senderAddress: process.env.SENDER_ADDRESS,
-        resetPasswordMail: 'resetPassword'
+        resetPasswordMail: 'resetPassword',
+        mailSubject: process.env.EMAIL_SUBJECT,
+        mailFooter: process.env.EMAIL_FOOTER,
     }
 }
