@@ -23,9 +23,9 @@ export function login(req, res, next) {
  * @param next
  */
 export function logout(req, res, next) {
-  let refreshToken = req.body.refreshToken;
+  let authorizationString = req.headers.authorization;
 
-  user.logout(refreshToken)
+  user.logout(authorizationString)
     .then(data => res.json(data))
     .catch(e => next(e));
 }

@@ -16,6 +16,23 @@ export function fetchTokens(params) {
 }
 
 /**
+ * Verify access token.
+ *
+ * @param token
+ * @returns {string}
+ */
+export function verifyAccessToken(token) {
+  try {
+    return jwt.verifyAccessToken(token);
+  } catch (err) {
+    if (err.name === auth.tokenExpired) {
+      throw boom.create(HttpStatus.UNAUTHORIZED, auth.tokenExpiredMsg);
+    }
+    throw boom.create(HttpStatus.UNAUTHORIZED, auth.invalidTokenMsg);
+  }
+}
+
+/**
  * Verify refresh token.
  *
  * @param token

@@ -59,7 +59,7 @@ export async function fetchByToken(token) {
 }
 
 /**
- * Delete a session with given id.
+ * Delete a session with given userid.
  *
  * @param id
  * @returns {Promise}
