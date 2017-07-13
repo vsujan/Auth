@@ -59,14 +59,14 @@ export async function fetchByToken(token) {
 }
 
 /**
- * Delete a session with given id.
+ * Delete a session with given userid.
  *
  * @param id
  * @returns {Promise}
  */
-export async function destroy(id) {
+export async function destroyByUserId(userId) {
   try {
-    let result = await Session.fetchById(id);
+    let result = await Session.fetchByUserId(userId);
 
     if (!result) {
       logger.debug(auth.noSession);

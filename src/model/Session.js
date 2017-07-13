@@ -12,6 +12,10 @@ class Session extends bookshelf.Model {
   static fetchByToken(token) {
     return Session.where('refresh_token', token).fetch();
   }
+
+  static fetchByUserId(userId) {
+    return Session.where('user_id', userId).fetch();
+  }
 }
 
 export default Session;

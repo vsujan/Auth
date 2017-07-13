@@ -132,12 +132,13 @@ export async function fetchById(id) {
  * @param token
  * @returns {Promise}
  */
-export async function logout(token) {
+export async function logout(authorizationString) {
   try {
-    await tokenService.verifyRefreshToken(token);
-    let sessionDetails = await sessionService.fetchByToken(token);
+    let length = authorizationString.length;
+    let accessToken = authorizationString.slice(7, length);
+    let data = tokenService.verifyAccessToken(accessToken);
 
-    await sessionService.destroy(sessionDetails.toJSON().id);
+    await sessionService.destroyByUserId(data.encryptedData.id);
 
     return auth.logoutSuccess;
   } catch (error) {
