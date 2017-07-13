@@ -135,9 +135,7 @@ export async function fetchById(id) {
 export async function logout(token) {
   try {
     await tokenService.verifyRefreshToken(token);
-    let sessionDetails = await sessionService.fetchByToken(token);
-
-    await sessionService.destroy(sessionDetails.toJSON().id);
+    await sessionService.destroy(token);
 
     return auth.logoutSuccess;
   } catch (error) {

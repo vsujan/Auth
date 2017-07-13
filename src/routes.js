@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('/login', userValidator.validateLogin, user.login);
 router.post('/refresh', authValidator.validateRefreshToken, auth.getNewAccessToken);
-router.post('/logout', authValidator.validateRefreshToken, user.logout);
+router.delete('/logout', authValidator.validateToken, authValidator.validateRefreshToken, user.logout);
 router.post('/forgotPassword', userValidator.validateForgotPassword, user.forgotPassword);
 router.post('/resetPassword/:token', userValidator.validateResetPassword, user.resetPassword);
 router.put('/changePassword', userValidator.validateChangePassword, authValidator.validateToken, user.changePassword);

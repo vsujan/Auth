@@ -64,19 +64,8 @@ export async function fetchByToken(token) {
  * @param id
  * @returns {Promise}
  */
-export async function destroy(id) {
-  try {
-    let result = await Session.fetchById(id);
+export async function destroy(token) {
+  let result = await fetchByToken(token);
 
-    if (!result) {
-      logger.debug(auth.noSession);
-      throw boom.notFound(auth.noSession);
-    }
-    result.destroy();
-
-    return null;
-  } catch (err) {
-    logger.error('Database error with message: ', err.message);
-    throw err;
-  }
+  result.destroy();
 }

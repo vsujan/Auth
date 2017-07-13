@@ -26,9 +26,7 @@ export async function verifyRefreshToken(token) {
     return jwt.verifyRefreshToken(token);
   } catch (err) {
     if (err.name === auth.tokenExpired) {
-      let sessionDetails = await sessionService.fetchByToken(token);
-
-      await sessionService.destroy(sessionDetails.toJSON().id);
+      await sessionService.destroy(token);
       throw boom.create(httpError.UNAUTHORIZED, auth.sessionExpiredMsg);
     }
     throw boom.create(httpError.UNAUTHORIZED, auth.invalidTokenMsg);
