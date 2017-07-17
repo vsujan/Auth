@@ -219,8 +219,8 @@
 
 * **Header:**
 
-  `Content-Type: application/json
-  Authorization: Bearer <access_token>`
+  ``Content-Type: application/json
+  Authorization: Bearer <access_token>``
 
 *  **URL Params**
 
