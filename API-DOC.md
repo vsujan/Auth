@@ -40,14 +40,14 @@
   * **Code:** 400 BAD REQUEST <br />
     **Content:**
 
-    			```
-    			{
-    				"error": {
-       				 	"code": 400,
-        				"message": "Bad request"
-    				}
-				}
-				```
+    ```
+    {
+    	"error": {
+        	 	"code": 400,
+        		"message": "Bad request"
+    	}
+    }
+    ```
 
 * **Sample Call**
 
