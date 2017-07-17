@@ -79,3 +79,71 @@
 * **Sample Call**
 
 	``` ```
+
+
+### Login to the application and in successful login returns user details with access and refresh token.
+
+* **URL**
+
+  /login
+
+* **Method:**
+
+  `POST`
+
+*  **URL Params**
+
+	None
+
+* **Data Params**
+
+	`{
+		"email": "",
+		"password": ""
+	}`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:**
+    			`{
+				    "user": {
+				        "firstName": "",
+				        "lastName": "",
+				        "email": ""
+				    },
+				    "role": {
+				        "title": "",
+				        "name": ""
+				    },
+				    "tokens": {
+				        "accessToken": "",
+				        "refreshToken": ""
+				    }
+				}`
+
+* **Error Response:**
+
+  * **Code:** 403 FORBIDDEN <br />
+    **Content:**
+    			`{
+				    "error": {
+				        "code": 403,
+				        "message": "Incorrect email"
+				    }
+				}`
+
+OR
+
+  * **Code:** 403 FORBIDDEN <br />
+    **Content:**
+    			`{
+				    "error": {
+				        "code": 403,
+				        "message": "Incorrect password"
+				    }
+				}`
+
+* **Sample Call**
+
+	``` ```
