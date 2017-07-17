@@ -147,3 +147,46 @@
 * **Sample Call**
 
 	``` ```
+
+### Get new access token based on refresh token.
+
+* **URL**
+
+  /refresh
+
+* **Method:**
+
+  `POST`
+
+*  **URL Params**
+
+	None
+
+* **Data Params**
+
+	`{
+		"refreshToken": ""
+	}`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:**
+    			`{
+				    "accessToken": ""
+				}`
+
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:**
+    			`{
+				    "error": {
+				        "code": 404,
+				        "message": "Refresh token does not exists."
+				    }
+				}`
+
+* **Sample Call**
+
+	``` ```
