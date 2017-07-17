@@ -11,7 +11,9 @@
 
 * **Header:**
 
-  `Content-Type: application/json`
+  ```bash
+  Content-Type: application/json
+  ```
 
 *  **URL Params**
 
@@ -19,12 +21,14 @@
 
 * **Data Params**
 
-	`{
+	```bash
+	{
 		"firstName": "",
 		"lastName": "",
 		"email": "",
 		"password": ""
-	}`
+	}
+	```
 
 * **Success Response:**
 
@@ -35,16 +39,19 @@
 
   * **Code:** 400 BAD REQUEST <br />
     **Content:**
-    			`{
+    			```bash
+    			{
     				"error": {
        				 	"code": 400,
         				"message": "Bad request"
     				}
-				}`
+				}
+				```
 
 * **Sample Call**
 
-	``` ```
+	```bash
+	```
 
 ### Validate confirmation token sent via email and change user status to active.
 
@@ -77,16 +84,19 @@
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:**
-    			`{
+    			```bash
+    			{
     				"error": {
         				"code": 401,
         				"message": "The token you provided is invalid."
     				}
-				}`
+				}
+				```
 
 * **Sample Call**
 
-	``` ```
+	```bash
+	```
 
 
 ### Login to the application and in successful login returns user details with access and refresh token.
@@ -109,16 +119,19 @@
 
 * **Data Params**
 
-	`{
+	```bash
+	{
 		"email": "",
 		"password": ""
-	}`
+	}
+	```
 
 * **Success Response:**
 
   * **Code:** 200 <br />
     **Content:**
-    			`{
+    			```bash
+    			{
 				    "user": {
 				        "firstName": "",
 				        "lastName": "",
@@ -132,33 +145,39 @@
 				        "accessToken": "",
 				        "refreshToken": ""
 				    }
-				}`
+				}
+				```
 
 * **Error Response:**
 
   * **Code:** 403 FORBIDDEN <br />
     **Content:**
-    			`{
+    			```bash
+    			{
 				    "error": {
 				        "code": 403,
 				        "message": "Incorrect email"
 				    }
-				}`
+				}
+				```
 
   OR
 
   * **Code:** 403 FORBIDDEN <br />
     **Content:**
-    			`{
+    			```bash
+    			{
 				    "error": {
 				        "code": 403,
 				        "message": "Incorrect password"
 				    }
-				}`
+				}
+				```
 
 * **Sample Call**
 
-	``` ```
+	```bash
+	```
 
 ### Get new access token based on refresh token.
 
@@ -172,7 +191,9 @@
 
 * **Header:**
 
-  `Content-Type: application/json`
+  ```bash
+  Content-Type: application/json
+  ```
 
 *  **URL Params**
 
@@ -180,32 +201,39 @@
 
 * **Data Params**
 
-	`{
+	```bash
+	{
 		"refreshToken": ""
-	}`
+	}
+	```
 
 * **Success Response:**
 
   * **Code:** 200 <br />
     **Content:**
-    			`{
+    			```bash
+    			{
 				    "accessToken": ""
-				}`
+				}
+				```
 
 * **Error Response:**
 
   * **Code:** 404 NOT FOUND <br />
     **Content:**
-    			`{
+    			```bash
+    			{
 				    "error": {
 				        "code": 404,
 				        "message": "Refresh token does not exists."
 				    }
-				}`
+				}
+				```
 
 * **Sample Call**
 
-	``` ```
+	```bash
+	```
 
 ### Logout from the application.
 
@@ -230,9 +258,11 @@
 
 * **Data Params**
 
-	`{
+	`bash
+	{
 		"refreshToken" : ""
-	}`
+	}
+	```
 
 * **Success Response:**
 
@@ -243,13 +273,16 @@
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:**
-    			`{
+    			```bash
+    			{
 				    "error": {
 				        "code": 401,
 				        "message": "The token you provided has expired."
 				    }
-				}`
+				}
+				```
 
 * **Sample Call**
 
-	``` ```
+	```bash
+	```
