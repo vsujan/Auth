@@ -1,6 +1,6 @@
 # API Documentation
 
-### Register new user to the application and send confirmation email to the user.
+[/verify/:token][] ### Register new user to the application and send confirmation email to the user.
 * **URL**
 
   /register
