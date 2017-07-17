@@ -39,6 +39,7 @@
 				}`
 
 * **Sample Call**
+
 	``` ```
 
 ### Validate confirmation token sent via email and change user status to active.
@@ -76,4 +77,5 @@
 				}`
 
 * **Sample Call**
+
 	``` ```
