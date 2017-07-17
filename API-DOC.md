@@ -39,6 +39,7 @@
 
   * **Code:** 400 BAD REQUEST <br />
     **Content:**
+
     			```
     			{
     				"error": {
@@ -84,6 +85,7 @@
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:**
+
     			```
     			{
     				"error": {
@@ -130,6 +132,7 @@
 
   * **Code:** 200 <br />
     **Content:**
+
     			```
     			{
 				    "user": {
@@ -152,6 +155,7 @@
 
   * **Code:** 403 FORBIDDEN <br />
     **Content:**
+
     			```
     			{
 				    "error": {
@@ -165,6 +169,7 @@
 
   * **Code:** 403 FORBIDDEN <br />
     **Content:**
+
     			```
     			{
 				    "error": {
@@ -211,6 +216,7 @@
 
   * **Code:** 200 <br />
     **Content:**
+
     			```
     			{
 				    "accessToken": ""
@@ -221,6 +227,7 @@
 
   * **Code:** 404 NOT FOUND <br />
     **Content:**
+
     			```
     			{
 				    "error": {
@@ -273,6 +280,7 @@
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:**
+
     			```
     			{
 				    "error": {
@@ -324,6 +332,7 @@
 
   * **Code:** 403 FORBIDDEN <br />
     **Content:**
+
     			```
     			{
 				    "error": {
@@ -375,6 +384,7 @@
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:**
+
     			```
     			{
 				    "error": {
@@ -429,6 +439,7 @@
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:**
+
     			```
     			{
 				    "error": {
@@ -442,6 +453,7 @@
 
   * **Code:** 403 FORBIDDEN <br />
     **Content:**
+
     			```
     			{
 				    "error": {
@@ -455,6 +467,7 @@
 
   * **Code:** 403 FORBIDDEN <br />
     **Content:**
+
     			```
     			{
 				    "error": {
@@ -503,6 +516,7 @@
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:**
+
     			```
     			{
 				    "error": {
@@ -516,6 +530,7 @@
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:**
+
     			```
     			{
 				    "error": {
