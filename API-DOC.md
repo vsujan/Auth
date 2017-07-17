@@ -11,7 +11,7 @@
 
 * **Header:**
 
-  ```bash
+  ```
   Content-Type: application/json
   ```
 
@@ -21,7 +21,7 @@
 
 * **Data Params**
 
-	```bash
+	```
 	{
 		"firstName": "",
 		"lastName": "",
@@ -38,8 +38,8 @@
 * **Error Response:**
 
   * **Code:** 400 BAD REQUEST <br />
-    **Content:
-    			```bash
+    **Content:**
+    			```
     			{
     				"error": {
        				 	"code": 400,
@@ -50,7 +50,7 @@
 
 * **Sample Call**
 
-	```bash
+	```
 	```
 
 ### Validate confirmation token sent via email and change user status to active.
@@ -84,7 +84,7 @@
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:**
-    			```bash
+    			```
     			{
     				"error": {
         				"code": 401,
@@ -95,7 +95,7 @@
 
 * **Sample Call**
 
-	```bash
+	```
 	```
 
 
@@ -119,7 +119,7 @@
 
 * **Data Params**
 
-	```bash
+	```
 	{
 		"email": "",
 		"password": ""
@@ -130,7 +130,7 @@
 
   * **Code:** 200 <br />
     **Content:**
-    			```bash
+    			```
     			{
 				    "user": {
 				        "firstName": "",
@@ -152,7 +152,7 @@
 
   * **Code:** 403 FORBIDDEN <br />
     **Content:**
-    			```bash
+    			```
     			{
 				    "error": {
 				        "code": 403,
@@ -165,7 +165,7 @@
 
   * **Code:** 403 FORBIDDEN <br />
     **Content:**
-    			```bash
+    			```
     			{
 				    "error": {
 				        "code": 403,
@@ -176,7 +176,7 @@
 
 * **Sample Call**
 
-	```bash
+	```
 	```
 
 ### Get new access token based on refresh token.
@@ -191,7 +191,7 @@
 
 * **Header:**
 
-  ```bash
+  ```
   Content-Type: application/json
   ```
 
@@ -201,7 +201,7 @@
 
 * **Data Params**
 
-	```bash
+	```
 	{
 		"refreshToken": ""
 	}
@@ -211,7 +211,7 @@
 
   * **Code:** 200 <br />
     **Content:**
-    			```bash
+    			```
     			{
 				    "accessToken": ""
 				}
@@ -221,7 +221,7 @@
 
   * **Code:** 404 NOT FOUND <br />
     **Content:**
-    			```bash
+    			```
     			{
 				    "error": {
 				        "code": 404,
@@ -232,7 +232,7 @@
 
 * **Sample Call**
 
-	```bash
+	```
 	```
 
 ### Logout from the application.
@@ -247,7 +247,7 @@
 
 * **Header:**
 
-  ```bash
+  ```
   Content-Type: application/json
   Authorization: Bearer <access_token>
   ```
@@ -258,7 +258,7 @@
 
 * **Data Params**
 
-	`bash
+	```
 	{
 		"refreshToken" : ""
 	}
@@ -273,7 +273,7 @@
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:**
-    			```bash
+    			```
     			{
 				    "error": {
 				        "code": 401,
@@ -284,5 +284,5 @@
 
 * **Sample Call**
 
-	```bash
+	```
 	```
