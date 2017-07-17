@@ -219,8 +219,10 @@
 
 * **Header:**
 
-  ``Content-Type: application/json
-  Authorization: Bearer <access_token>``
+  ```bash
+  Content-Type: application/json
+  Authorization: Bearer <access_token>
+  ```
 
 *  **URL Params**
 
