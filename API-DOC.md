@@ -1,6 +1,6 @@
 # API Documentation
 
-#### Register new user to the application and send confirmation email to the user.
+### Register new user to the application and send confirmation email to the user.
 * **URL**
 
   /register
@@ -35,5 +35,39 @@
     				"error": {
        				 	"code": 400,
         				"message": "Bad request"
+    				}
+				}`
+
+### Validate confirmation token sent via email and change user status to active.
+
+* **URL**
+
+  /verify/:token
+
+* **Method:**
+
+  `PATCH`
+
+*  **URL Params**
+
+	`token=[string]`
+
+* **Data Params**
+
+	None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `Successfully verified user account.`
+
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:**
+    			`{
+    				"error": {
+        				"code": 401,
+        				"message": "The token you provided is invalid."
     				}
 				}`
