@@ -12,6 +12,18 @@ export function register(req, res, next) {
 }
 
 /**
+ * Verify user registration.
+ *
+ */
+export function verify(req, res, next) {
+  let token = req.params.token;
+
+  user.verify(token)
+    .then(() => res.send('Successfully verified user account.'))
+    .catch(e => next(e));
+}
+
+/**
  * Returns login details.
  *
  * @param req

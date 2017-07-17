@@ -7,6 +7,7 @@ import * as authValidator from './middleware/validator/auth';
 const router = express.Router();
 
 router.post('/register', userValidator.validateRegister, user.register);
+router.patch('/verify/:token', user.verify);
 router.post('/login', userValidator.validateLogin, user.login);
 router.post('/refresh', authValidator.validateRefreshToken, auth.getNewAccessToken);
 router.delete('/logout', authValidator.validateToken, authValidator.validateRefreshToken, user.logout);
@@ -14,5 +15,3 @@ router.post('/forgotPassword', userValidator.validateForgotPassword, user.forgot
 router.post('/resetPassword/:token', userValidator.validateResetPassword, user.resetPassword);
 router.put('/changePassword', userValidator.validateChangePassword, authValidator.validateToken, user.changePassword);
 router.get('/validateToken', authValidator.validateToken, auth.validateToken);
-
-export default router;

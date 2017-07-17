@@ -21,7 +21,7 @@ import * as userTokenService from '../service/userToken';
  * @param payload
  * @returns {Promise}
  */
-export async function register(payload) {
+export async function register(payload, baseUrl) {
   let password = await crypt.hash(payload.password);
   let params = {
     firstName: payload.firstName,
@@ -30,8 +30,66 @@ export async function register(payload) {
     password
   };
   let user = await create(params);
+  let userInfo = user.toJSON();
+  let userId = userInfo.id;
+  let userToken = await userTokenService.fetchByUserId(userId);
 
-  return user;
+  if (userToken !== null) {
+    await userTokenService.destroy(userToken.get('id'));
+  }
+
+  let token = await tokenService.fetchRegistrationToken(payload);
+
+  await sendMailToUser({
+    token,
+    type: config.ses.verifyUserMail,
+    userInfo,
+    baseUrl
+  });
+}
+
+/**
+ * Verify user registration.
+ *
+ */
+export async function verify(token) {
+  await tokenService.verifyRegistrationToken(token);
+  let userTokenDetails = await userTokenService.fetchByUserToken(token);
+  let userTokenInfo = userTokenDetails.toJSON();
+
+  await User.updateById(userTokenInfo.userId, {
+    status: 1
+  });
+
+  await userTokenService.destroy(userTokenInfo.id);
+}
+
+/**
+ * Send mail to user depending upon the type.
+ *
+ * @param params
+ * @returns {Promise.<void>}
+ */
+async function sendMailToUser(params) {
+  let { token, type, userInfo, baseUrl } = params;
+  let link = baseUrl + '/' + type + '/' + token;
+  let emailParams = {
+    userName: userInfo.firstName,
+    userEmail: userInfo.email,
+    link,
+    queryDate: moment().format(MAIL_DATE_FORMAT)
+  };
+  let tokenDetails = await userTokenService.saveToken({
+    userId: userInfo.id,
+    token,
+    type
+  });
+
+  try {
+    await email.sendEmail(emailParams, type);
+  } catch (err) {
+    await userTokenService.destroy(tokenDetails.toJSON().id);
+  }
 }
 
 /**
@@ -67,7 +125,7 @@ export async function create(data) {
  * @returns {Promise}
  */
 export async function login(loginParams) {
-    try {
+  try {
     let userDetails = await validateUser(loginParams);
     let { id, firstName, lastName, email, contactNumber, roleId } = userDetails.toJSON();
 
@@ -233,18 +291,12 @@ export async function forgotPassword(payload, baseUrl) {
   }
 
   let token = await tokenService.fetchForgotPasswordToken(payload);
-  let link = baseUrl + '/' + config.auth.resetPasswordKey + '/' + token;
-  let emailParams = {
-    userName: userInfo.firstName,
-    userEmail: userInfo.email,
-    link,
-    queryDate: moment().format(MAIL_DATE_FORMAT)
-  };
 
-  await email.sendResetPasswordMail(emailParams, config.ses.resetPasswordMail);
-  await userTokenService.saveToken({
-    userId,
-    token
+  await sendMailToUser({
+    token,
+    type: config.ses.resetPasswordMail,
+    userInfo,
+    baseUrl
   });
 }
 

@@ -65,3 +65,19 @@ export function generateForgotPasswordToken(data) {
 export function verifyForgotPasswordToken(token) {
   return jwt.verify(token, config.auth.forgotPasswordSalt);
 }
+
+/**
+ * Return forgot password token.
+ *
+ */
+export function generateRegisterToken(data) {
+  return jwt.sign({ encryptedData: data }, config.auth.registerSalt);
+}
+
+/**
+ * Verify forgot password token.
+ *
+ */
+export function verifyRegisterToken(token) {
+  return jwt.verify(token, config.auth.registerSalt);
+}

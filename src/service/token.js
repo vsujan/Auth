@@ -16,23 +16,6 @@ export function fetchTokens(params) {
 }
 
 /**
- * Verify access token.
- *
- * @param token
- * @returns {string}
- */
-export function verifyAccessToken(token) {
-  try {
-    return jwt.verifyAccessToken(token);
-  } catch (err) {
-    if (err.name === auth.tokenExpired) {
-      throw boom.create(HttpStatus.UNAUTHORIZED, auth.tokenExpiredMsg);
-    }
-    throw boom.create(HttpStatus.UNAUTHORIZED, auth.invalidTokenMsg);
-  }
-}
-
-/**
  * Verify refresh token.
  *
  * @param token
@@ -79,6 +62,36 @@ export function fetchForgotPasswordToken(params) {
 export async function verifyForgotPasswordToken(token) {
   try {
     await jwt.verifyForgotPasswordToken(token);
+  } catch (err) {
+    if (err.name === auth.tokenExpired) {
+      let userToken = await userTokenService.fetchByUserToken(token);
+
+      await userTokenService.destroy(userToken.get('id'));
+      throw boom.create(httpError.UNAUTHORIZED, auth.tokenExpiredMsg);
+    }
+    throw boom.create(httpError.UNAUTHORIZED, auth.invalidTokenMsg);
+  }
+}
+
+/**
+ * Return registration token.
+ *
+ * @param params
+ * @returns {string}
+ */
+export function fetchRegistrationToken(params) {
+  return jwt.generateRegisterToken(params);
+}
+
+/**
+ * Verify registration token.
+ *
+ * @param token
+ * @returns {Promise}
+ */
+export async function verifyRegistrationToken(token) {
+  try {
+    await jwt.verifyRegisterToken(token);
   } catch (err) {
     if (err.name === auth.tokenExpired) {
       let userToken = await userTokenService.fetchByUserToken(token);

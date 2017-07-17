@@ -15,7 +15,7 @@ export default {
         refreshTokenSalt: process.env.REFRESH_TOKEN_SALT || 'authenTICaTION',
         forgotPasswordExpiry: process.env.FORGOT_PASSWORD_TOKEN_DURATION || 300000,
         forgotPasswordSalt: process.env.FORGOT_PASSWORD_TOKEN_SALT || 'forgotpassword',
-        resetPasswordKey: 'reset'
+        registerSalt: process.env.REGISTER_TOKEN_SALT || 'registerUser'
     },
     database: {
         client: 'pg',
@@ -31,8 +31,11 @@ export default {
         accessKey: process.env.ACCESS_KEY,
         secretKey: process.env.SECRET_KEY,
         senderAddress: process.env.SENDER_ADDRESS,
-        resetPasswordMail: 'resetPassword',
         mailSubject: process.env.EMAIL_SUBJECT,
         mailFooter: process.env.EMAIL_FOOTER,
+        errorMail: 'error',
+        helpMail: 'help',
+        resetPasswordMail: 'reset',
+        verifyUserMail: 'verify'
     }
 }
