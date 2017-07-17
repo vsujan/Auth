@@ -38,7 +38,7 @@
 * **Error Response:**
 
   * **Code:** 400 BAD REQUEST <br />
-    **Content:**
+    **Content:
     			```bash
     			{
     				"error": {
