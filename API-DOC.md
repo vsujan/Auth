@@ -33,7 +33,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `Successfully registered. Verify your account`
+    **Content:** `Successfully registered. An email has been sent to verify your account`
 
 * **Error Response:**
 
@@ -78,7 +78,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `Successfully verified user account.`
+    **Content:** `Successfully verified user account`
 
 * **Error Response:**
 
@@ -88,7 +88,7 @@
     			{
     				"error": {
         				"code": 401,
-        				"message": "The token you provided is invalid."
+        				"message": "The token you provided is invalid"
     				}
 				}
 				```
@@ -225,7 +225,7 @@
     			{
 				    "error": {
 				        "code": 404,
-				        "message": "Refresh token does not exists."
+				        "message": "Refresh token does not exists"
 				    }
 				}
 				```
@@ -267,7 +267,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `Successfully logged out from the application.`
+    **Content:** `Successfully logged out from the application`
 
 * **Error Response:**
 
@@ -277,7 +277,7 @@
     			{
 				    "error": {
 				        "code": 401,
-				        "message": "The token you provided has expired."
+				        "message": "The token you provided has expired"
 				    }
 				}
 				```
@@ -433,7 +433,7 @@
     			{
 				    "error": {
 				        "code": 401,
-				        "message": "The token you provided has expired."
+				        "message": "The token you provided has expired"
 				    }
 				}
 				```
@@ -507,7 +507,7 @@
     			{
 				    "error": {
 				        "code": 401,
-				        "message": "The token you provided has expired."
+				        "message": "The token you provided has expired"
 				    }
 				}
 				```
@@ -520,7 +520,7 @@
     			{
 				    "error": {
 				        "code": 401,
-				        "message": "The token you provided is invalid."
+				        "message": "The token you provided is invalid"
 				    }
 				}
 				```

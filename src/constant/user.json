@@ -1,0 +1,8 @@
+{
+  "logoutSuccess" : "Successfully logged out from the application",
+  "verifySuccess": "Successfully verified user account",
+  "changePasswordSuccess": "Password successfully changed",
+  "resetPasswordLinkSuccess": "Successfully sent reset password link",
+  "passwordResetSuccess": "Password reset successfully",
+  "verifyAccount": "Successfully registered. An email has been sent to verify your account"
+}

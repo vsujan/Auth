@@ -1,5 +1,6 @@
 import * as user from '../service/user';
 import { getBaseUrl } from '../utils/url';
+import * as user from '../constant/user.json';
 
 /**
  * Register a user to the application.
@@ -7,7 +8,7 @@ import { getBaseUrl } from '../utils/url';
  */
 export function register(req, res, next) {
   user.register(req.body)
-    .then(data => res.json(data))
+    .then(data => res.send(user.verifyAccount))
     .catch(e => next(e));
 }
 
@@ -19,7 +20,7 @@ export function verify(req, res, next) {
   let token = req.params.token;
 
   user.verify(token)
-    .then(() => res.send('Successfully verified user account.'))
+    .then(() => res.send(user.verifySuccess))
     .catch(e => next(e));
 }
 
@@ -61,7 +62,7 @@ export function logout(req, res, next) {
  */
 export function changePassword(req, res, next) {
   user.changePassword(req.body)
-    .then(() => res.send('Password successfully changed'))
+    .then(() => res.send(user.changePasswordSuccess))
     .catch(e => next(e));
 }
 
@@ -76,7 +77,7 @@ export function forgotPassword(req, res, next) {
   let baseUrl = getBaseUrl(req);
 
   user.forgotPassword(req.body, baseUrl)
-    .then(() => res.send('Successfully sent reset password link'))
+    .then(() => res.send(user.resetPasswordLinkSuccess))
     .catch(e => next(e));
 }
 
@@ -92,6 +93,6 @@ export function resetPassword(req, res, next) {
   let payload = req.body;
 
   user.resetPassword(token, payload)
-    .then(() => res.send('Password reset successfully'))
+    .then(() => res.send(user.passwordResetSuccess))
     .catch(e => next(e));
 }
