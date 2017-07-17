@@ -286,3 +286,246 @@
 
 	```
 	```
+
+### Send reset password link to email.
+
+* **URL**
+
+  /forgotPassword
+
+* **Method:**
+
+  `POST`
+
+* **Header:**
+
+  ```
+  Content-Type: application/json
+  ```
+
+*  **URL Params**
+
+	None
+
+* **Data Params**
+
+	```
+	{
+		"email": ""
+	}
+	```
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `Successfully sent reset password link`
+
+* **Error Response:**
+
+  * **Code:** 403 FORBIDDEN <br />
+    **Content:**
+    			```
+    			{
+				    "error": {
+				        "code": 403,
+				        "message": "Incorrect email"
+				    }
+				}
+				```
+
+* **Sample Call**
+
+	```
+	```
+
+### Validate the reset password token and on success change the password.
+
+* **URL**
+
+  /resetPassword/:token
+
+* **Method:**
+
+  `POST`
+
+* **Header:**
+
+  ```
+  Content-Type: application/json
+  ```
+
+*  **URL Params**
+
+	`token=[string]`
+
+* **Data Params**
+
+	```
+	{
+		"newPassword": ""
+	}
+	```
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `Password reset successfully`
+
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:**
+    			```
+    			{
+				    "error": {
+				        "code": 500,
+				        "message": "Server Error"
+				    }
+				}
+				```
+
+* **Sample Call**
+
+	```
+	```
+
+### Change user password.
+
+* **URL**
+
+  /changePassword
+
+* **Method:**
+
+  `PUT`
+
+* **Header:**
+
+  ```
+  Content-Type: application/json
+  Authorization: Bearer <access_token>
+  ```
+
+*  **URL Params**
+
+	None
+
+* **Data Params**
+
+	```
+	{
+		"email": "",
+		"oldPassword": "",
+		"newPassword": ""
+	}
+	```
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `Password successfully changed`
+
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:**
+    			```
+    			{
+				    "error": {
+				        "code": 401,
+				        "message": "The token you provided has expired."
+				    }
+				}
+				```
+
+  OR
+
+  * **Code:** 403 FORBIDDEN <br />
+    **Content:**
+    			```
+    			{
+				    "error": {
+				        "code": 403,
+				        "message": "Incorrect email"
+				    }
+				}
+				```
+
+  OR
+
+  * **Code:** 403 FORBIDDEN <br />
+    **Content:**
+    			```
+    			{
+				    "error": {
+				        "code": 403,
+				        "message": "Incorrect password"
+				    }
+				}
+				```
+
+* **Sample Call**
+
+	```
+	```
+
+### Validate if access token is valid or not.
+
+* **URL**
+
+  /validateToken
+
+* **Method:**
+
+  `GET`
+
+* **Header:**
+
+  ```
+  Content-Type: application/json
+  Authorization: Bearer <access_token>
+  ```
+
+*  **URL Params**
+
+	None
+
+* **Data Params**
+
+	None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `Valid token`
+
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:**
+    			```
+    			{
+				    "error": {
+				        "code": 401,
+				        "message": "The token you provided has expired."
+				    }
+				}
+				```
+
+  OR
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:**
+    			```
+    			{
+				    "error": {
+				        "code": 401,
+				        "message": "The token you provided is invalid."
+				    }
+				}
+				```
+
+* **Sample Call**
+
+	```
+	```
