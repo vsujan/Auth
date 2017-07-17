@@ -1,6 +1,6 @@
 # API Documentation
 
-## Register new user to the application and send confirmation email to the user.
+#### Register new user to the application and send confirmation email to the user.
 * **URL**
 
   /register
@@ -25,7 +25,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `Successfully registered. Verify you account`
+    **Content:** `Successfully registered. Verify your account`
 
 * **Error Response:**
 
