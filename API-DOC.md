@@ -1,6 +1,6 @@
 # API Documentation
 
-[Link-name2](### Register new user to the application and send confirmation email to the user.)
+[Here](### Register new user to the application and send confirmation email to the user.)
 * **URL**
 
   /register
@@ -571,6 +571,6 @@
 	```
 	http GET localhost:8080/api/auth/validateToken Authorization:Bearer-jajnandkl
 	```
-# Link-name2
+# Here
 
 `Here`
