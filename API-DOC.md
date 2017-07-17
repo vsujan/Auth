@@ -9,6 +9,10 @@
 
   `POST`
 
+* **Header:**
+
+  `Content-Type: application/json`
+
 *  **URL Params**
 
 	None
@@ -52,6 +56,10 @@
 
   `PATCH`
 
+* **Header:**
+
+  None
+
 *  **URL Params**
 
 	`token=[string]`
@@ -90,6 +98,10 @@
 * **Method:**
 
   `POST`
+
+* **Header:**
+
+  `Content-Type: application/json`
 
 *  **URL Params**
 
@@ -158,6 +170,10 @@
 
   `POST`
 
+* **Header:**
+
+  `Content-Type: application/json`
+
 *  **URL Params**
 
 	None
@@ -184,6 +200,51 @@
 				    "error": {
 				        "code": 404,
 				        "message": "Refresh token does not exists."
+				    }
+				}`
+
+* **Sample Call**
+
+	``` ```
+
+### Logout from the application.
+
+* **URL**
+
+  /logout
+
+* **Method:**
+
+  `DELETE`
+
+* **Header:**
+
+  `Content-Type: application/json
+  Authorization: Bearer <access_token>`
+
+*  **URL Params**
+
+	None
+
+* **Data Params**
+
+	`{
+		"refreshToken" : ""
+	}`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `Successfully logged out from the application.`
+
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:**
+    			`{
+				    "error": {
+				        "code": 401,
+				        "message": "The token you provided has expired."
 				    }
 				}`
 
