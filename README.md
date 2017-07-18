@@ -7,6 +7,9 @@ Authentication module for backend
 ## Platform
    `NodeJS`
 
+## Database
+   `Postgresql`
+
 ## Requirements
 Database with tables:
 1) users
