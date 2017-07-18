@@ -1,6 +1,12 @@
 # Auth module
 Authentication module for backend
 
+# Usage
+  `var authModule = require('Auth')`
+
+## Platform
+   `NodeJS`
+
 ## Requirements
 Database with tables:
 1) users
