@@ -7,7 +7,7 @@
   "author": "vsujan <sujanvaidya@lftechnology.com>",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^1.0.2",
+    "bcrypt": "^5.0.0",
     "bookshelf": "^0.10.3",
     "bookshelf-camelcase": "^1.1.4",
     "boom": "^4.3.1",
